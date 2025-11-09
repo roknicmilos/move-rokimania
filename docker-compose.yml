@@ -1,0 +1,40 @@
+services:
+
+  backend:
+    container_name: move-backend
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    environment:
+      PYTHONPATH: /app
+      SQLALCHEMY_DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+      ASYNC_SQLALCHEMY_DATABASE_URL: "postgresql+asyncpg://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+      DB_HOST: "${DB_HOST}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      DB_PORT: "${DB_PORT}"
+    depends_on:
+      - database
+
+  database:
+    container_name: move-database
+    image: postgres:18
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_NAME}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:

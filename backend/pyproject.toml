@@ -1,0 +1,45 @@
+[project]
+name = "fastapi-stuff"
+version = "0.1.0"
+description = "A simple FastAPI project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.16.5",
+    "fastapi>=0.104.0",
+    "sqlalchemy>=2.0.43",
+    "uvicorn[standard]>=0.24.0",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9.9",
+    "python-decouple>=3.8",
+]
+
+[project.dependency-groups]
+dev = [
+    "ruff>=0.15.0",
+    "mypy>=1.10.0",
+]
+
+[tool.ruff]
+line-length = 80
+target-version = "py311"
+exclude = ["alembic/versions/*", ".venv/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "I", "ANN"]
+ignore = ["E203"]
+per-file-ignores = { "alembic/versions/*.py" = ["E", "F", "W", "ANN"] }
+external = ["mypy"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = []
+ignore_missing_imports = true
+disallow_untyped_defs = false
+warn_return_any = false
+show_error_codes = true
+exclude = "alembic/versions/.*|frontend/.*"
+files = ["src"]
