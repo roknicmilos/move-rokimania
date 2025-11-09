@@ -1,4 +1,4 @@
-# Move @ Rokimania
+# Move@Rokimania
 
 FastAPI + Next.js app for tracking fitness stuff.
 
@@ -30,10 +30,10 @@ The applications will be available at:
 
 - **Frontend**: [http://localhost:3000/](http://localhost:3000/)
 - **Backend API**: [http://localhost:8000/](http://localhost:8000/)
-- **Interactive API docs
-  **: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **Alternative API docs
-  **: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- **Interactive API docs**:
+  [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Alternative API docs**:
+  [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
 ## Project Structure
 

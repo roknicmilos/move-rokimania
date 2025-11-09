@@ -21,6 +21,21 @@ services:
     depends_on:
       - database
 
+  frontend:
+    container_name: move-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app
+    environment:
+      - INTERNAL_API_URL=http://backend:8000
+      - NEXT_PUBLIC_CLIENT_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+
   database:
     container_name: move-database
     image: postgres:18
