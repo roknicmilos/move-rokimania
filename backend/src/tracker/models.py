@@ -71,8 +71,8 @@ class HoldEntry(Entry):
     __tablename__ = "hold_entries"
 
     id = Column(Integer, ForeignKey("entries.id"), primary_key=True)
-    started_at = Column(DateTime, nullable=False)
-    ended_at = Column(DateTime, nullable=False)
+    started_at = Column(DateTime(timezone=True), nullable=False)
+    ended_at = Column(DateTime(timezone=True), nullable=False)
     exercise = Column(Enum(HoldEntryType), nullable=False)
 
     __mapper_args__ = {
