@@ -13,12 +13,12 @@ FastAPI + Next.js app for tracking fitness stuff.
 1. Clone the repository and navigate to the project directory.
    <br/><br/>
 
-2. Create `local.env` file based on `example.env`:
+2. Create `.env` file based on `example.env`:
    ```bash
-   cp example.env local.env
+   cp example.env .env
    ```
 
-3. (Optional) Modify environment variables in `local.env` as needed.
+3. (Optional) Modify environment variables in `.env` as needed.
    <br/><br/>
 
 4. Run the services (in detached mode):
