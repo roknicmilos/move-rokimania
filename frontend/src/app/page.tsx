@@ -1,6 +1,6 @@
 import { formatDate } from "@/utils";
 import { Entry } from "@/type";
-import ClientEntries from "@/components/ClientEntries";
+import EntryTable from "@/components/EntryTable";
 import { moveAPI } from "@/api/moveAPI";
 
 export default async function Home() {
@@ -31,7 +31,7 @@ export default async function Home() {
           <div key={date} className="mb-8">
             <h2 className="text-sm font-semibold text-gray-700 mb-3 px-1">{date}</h2>
             <div className="space-y-2">
-              <ClientEntries entries={grouped[date]}/>
+              <EntryTable entries={grouped[date]}/>
             </div>
           </div>
         ))}
