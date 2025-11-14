@@ -1,18 +1,10 @@
 import { formatDate } from "@/utils";
 import { Entry } from "@/type";
 import ClientEntries from "@/components/ClientEntries";
-
-async function getEntries(): Promise<Entry[]> {
-  const url = process.env.INTERNAL_API_URL + '/entries/';
-  const res = await fetch(url, {cache: 'no-store'});
-  if (!res.ok) {
-    throw new Error(`Failed to fetch entries: ${res.statusText}`);
-  }
-  return res.json();
-}
+import { moveAPI } from "@/api/moveAPI";
 
 export default async function Home() {
-  const entries = await getEntries();
+  const entries = await moveAPI.getEntries();
 
   // Group entries by date (using created_at)
   const grouped = entries.reduce((acc: Record<string, Entry[]>, entry: Entry) => {
