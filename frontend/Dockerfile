@@ -1,13 +1,11 @@
 FROM node:24
 
+COPY entrypoint.sh      /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 WORKDIR /app/src
-
-COPY src/package*.json ./
-
-RUN yarn install --frozen-lockfile
-
 COPY src/ .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+ENTRYPOINT ["/app/entrypoint.sh"]
