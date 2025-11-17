@@ -6,7 +6,6 @@ from pydantic import BaseModel, Field
 from .models import HoldEntryType, RepsEntryType
 
 
-# Base schemas
 class EntryBase(BaseModel):
     load: int = Field(0, ge=0)
 
