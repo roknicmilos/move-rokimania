@@ -30,4 +30,15 @@ export const moveAPI = {
     return res.data;
   },
 
+  async createHoldEntry(data: {
+    exercise: string;
+    started_at: string;
+    ended_at: string;
+    load?: number;
+  }): Promise<Entry> {
+
+    const res = await api.post<Entry>('/entries/hold', data);
+    return res.data;
+  },
+
 };
