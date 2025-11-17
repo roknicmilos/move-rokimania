@@ -15,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
-import axios from "axios";
 import { Play, Pause, Loader2 } from "lucide-react";
 import { moveAPI } from "@/api/moveAPI";
 
