@@ -55,7 +55,7 @@ export default function AddEntryPage() {
             onClick={() => toast.dismiss(t.id)}
             className="ml-4 text-red-700 hover:text-red-900 transition"
           >
-            <X size={20}/>
+            <X size={20} className="cursor-pointer"/>
           </button>
         </div>
       ),
@@ -92,7 +92,7 @@ export default function AddEntryPage() {
                   className={
                     "group p-8 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600" +
                     " hover:to-blue-700 text-white rounded-lg shadow-lg transform transition-all" +
-                    " duration-200 hover:scale-105 hover:shadow-xl"
+                    " duration-200 hover:scale-105 hover:shadow-xl cursor-pointer"
                   }
                 >
                   <div className="text-5xl mb-4">💪</div>
@@ -107,7 +107,7 @@ export default function AddEntryPage() {
                   className={
                     "group p-8 bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600" +
                     " hover:to-purple-700 text-white rounded-lg shadow-lg transform transition-all" +
-                    " duration-200 hover:scale-105 hover:shadow-xl"
+                    " duration-200 hover:scale-105 hover:shadow-xl cursor-pointer"
                   }
                 >
                   <div className="text-5xl mb-4">⏱️</div>
@@ -126,9 +126,9 @@ export default function AddEntryPage() {
                 </h2>
                 <button
                   onClick={handleBack}
-                  className="text-gray-500 hover:text-gray-700 transition"
+                  className="text-gray-500 hover:text-gray-700 transition cursor-pointer"
                 >
-                  ← Back to selection
+                  {"<<"} Back
                 </button>
               </div>
 
