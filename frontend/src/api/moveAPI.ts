@@ -41,4 +41,12 @@ export const moveAPI = {
     return res.data;
   },
 
+  async deleteRepsEntry(id: number): Promise<void> {
+    await api.delete(`/entries/reps/${id}`);
+  },
+
+  async deleteHoldEntry(id: number): Promise<void> {
+    await api.delete(`/entries/hold/${id}`);
+  },
+
 };

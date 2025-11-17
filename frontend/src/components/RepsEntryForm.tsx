@@ -34,7 +34,9 @@ const REPS_EXERCISES = [
 const repsEntrySchema = z.object({
   load: z.coerce.number().min(0, "Load must be >= 0"),
   reps: z.coerce.number().min(1, "Reps must be at least 1"),
-  exercise: z.enum(REPS_EXERCISES),
+  exercise: z.enum(REPS_EXERCISES, {
+    error: "Please select a valid exercise",
+  }),
 });
 
 type RepsEntryFormData = z.infer<typeof repsEntrySchema>;
@@ -87,11 +89,7 @@ export default function RepsEntryForm({onSuccess, onError}: RepsEntryFormProps) 
             </Label>
             <Select onValueChange={(v) => setValue("exercise", v as any)} value={selectedExercise}>
               <SelectTrigger
-                className={
-                  "h-12 text-base font-medium text-gray-900 data-[placeholder]:text-gray-500" +
-                  " bg-white border-gray-300 focus:ring-2 focus:ring-blue-500 cursor-pointer"
-                }
-              >
+                className="w-full h-12 px-3 text-base font-medium text-gray-900 data-[placeholder]:text-gray-500 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 <SelectValue placeholder="Choose exercise"/>
               </SelectTrigger>
               <SelectContent className="bg-white border border-gray-300 shadow-2xl z-50">
@@ -99,15 +97,17 @@ export default function RepsEntryForm({onSuccess, onError}: RepsEntryFormProps) 
                   <SelectItem
                     key={ex}
                     value={ex}
-                    className="text-base py-3 font-medium text-gray-900 hover:bg-blue-50 focus:bg-blue-100 cursor-pointer"
+                    className="text-base py-3 font-medium text-gray-900 hover:bg-blue-50 focus:bg-blue-100"
                   >
-                    {ex}
+                    {ex.replace(/_/g, " ")}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             {errors.exercise && (
-              <p className="text-sm font-medium text-red-600 mt-2">{errors.exercise.message}</p>
+              <p className="text-sm font-medium text-red-600 mt-2">
+                {errors.exercise.message || "Please select an exercise"}
+              </p>
             )}
           </div>
 
@@ -122,8 +122,7 @@ export default function RepsEntryForm({onSuccess, onError}: RepsEntryFormProps) 
               min="1"
               {...register("reps")}
               placeholder="e.g. 12"
-              className="h-12 text-base font-medium text-gray-900 placeholder:font-normal placeholder:text-gray-400
-                         bg-white border-gray-300 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-3 text-base font-medium text-gray-900 placeholder:text-gray-400 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             {errors.reps && (
               <p className="text-sm font-medium text-red-600 mt-2">{errors.reps.message}</p>

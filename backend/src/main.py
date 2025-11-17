@@ -38,4 +38,4 @@ async def validation_exception_handler(
 
 @app.get("/")
 def read_root() -> dict[str, str]:
-    return {"message": "hello world"}
+    return {"message": "Welcome to the Workout Tracker API"}
