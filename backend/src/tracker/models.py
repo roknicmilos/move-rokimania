@@ -39,14 +39,15 @@ class Entry(Base, BaseModel):
     __tablename__ = "entries"
 
     type = Column(String(50))
-
     load = Column(Integer, nullable=False, server_default="0")
+    user_id = Column(
+        Integer, ForeignKey("users.id"), nullable=False, index=True
+    )
 
     __mapper_args__ = {
         "polymorphic_identity": "entry",
         "polymorphic_on": type,
     }
-
     __table_args__ = (CheckConstraint("load >= 0", name="load_positive"),)
 
 
