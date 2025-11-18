@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from decouple import config, Csv
 from src.tracker import routes as tracker_routes
+from src.users import routes as user_routes
 
 app = FastAPI()
 
@@ -17,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(tracker_routes.router)
+app.include_router(user_routes.router)
 
 
 @app.exception_handler(RequestValidationError)
@@ -37,5 +39,5 @@ async def validation_exception_handler(
 
 
 @app.get("/")
-def read_root() -> dict[str, str]:
+def index() -> dict[str, str]:
     return {"message": "Welcome to the Workout Tracker API"}

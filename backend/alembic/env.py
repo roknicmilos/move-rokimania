@@ -23,6 +23,7 @@ if alembic_config.config_file_name is not None:
 # for 'autogenerate' support
 from src.database import Base # noqa
 from src.tracker import models # noqa
+from src.users import models # noqa
 
 target_metadata = Base.metadata
 
