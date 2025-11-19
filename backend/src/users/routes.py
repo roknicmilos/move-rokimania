@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.exceptions import RequestValidationError
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database import get_async_db
@@ -43,10 +42,7 @@ async def login(
     try:
         user = await authenticate_user(credentials, db)
     except InvalidCredentialsError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail=str(exc),
-        ) from exc
+        raise FieldValidationError(field="__all__", message=str(exc)) from exc
 
     return schemas.UserWithToken(
         id=user.id,

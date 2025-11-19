@@ -9,6 +9,6 @@ class UsernameAlreadyExistsError(Exception):
 class InvalidCredentialsError(Exception):
     """Raised when login credentials are invalid."""
 
-    def __init__(self, message: str = "Incorrect username or password"):
+    def __init__(self, message: str = "Incorrect username and/or password"):
         self.message = message
         super().__init__(self.message)
