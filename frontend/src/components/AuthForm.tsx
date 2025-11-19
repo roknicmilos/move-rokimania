@@ -61,12 +61,11 @@ export default function AuthForm({mode, redirectOnSuccess}: AuthFormProps) {
     setErrors({});
     setIsLoading(true);
 
-    let response;
     const apiCall = mode === "register"
       ? moveAPI.register
       : moveAPI.login;
     try {
-      response = await apiCall(username, password);
+      await apiCall(username, password);
     } catch (error: any) {
       console.log(error.name);
       if (error instanceof RegisterApiValidationError || error instanceof LoginApiValidationError) {
@@ -85,10 +84,8 @@ export default function AuthForm({mode, redirectOnSuccess}: AuthFormProps) {
       setIsLoading(false);
     }
 
-    if (response && (response.status === 200 || response.status === 201)) {
-      router.push(redirectOnSuccess);
-      return;
-    }
+    // On success, redirect to the specified page
+    router.push(redirectOnSuccess);
   };
 
   return (

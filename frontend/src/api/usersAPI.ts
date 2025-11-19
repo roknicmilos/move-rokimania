@@ -1,10 +1,10 @@
 import { baseAPI } from "@/api/baseAPI";
-import { AxiosResponse } from "axios";
 import { LoginApiValidationError, RegisterApiValidationError } from "@/core/errors";
+import { AuthResponse } from "@/api/type";
 
 export const usersAPI = {
 
-  async register(username: string, password: string): Promise<AxiosResponse> {
+  async register(username: string, password: string): Promise<AuthResponse> {
     const response = await baseAPI.post(
       "/users/register",
       {username, password},
@@ -15,10 +15,14 @@ export const usersAPI = {
       throw new RegisterApiValidationError(response.data);
     }
 
-    return response;
+    if (response.status !== 201) {
+      throw new Error("Registration failed");
+    }
+
+    return response.data;
   },
 
-  async login(username: string, password: string): Promise<AxiosResponse> {
+  async login(username: string, password: string): Promise<AuthResponse> {
     const response = await baseAPI.post(
       "/users/login",
       {username, password},
@@ -29,7 +33,11 @@ export const usersAPI = {
       throw new LoginApiValidationError(response.data);
     }
 
-    return response;
+    if (response.status !== 200) {
+      throw new Error("Login failed");
+    }
+
+    return response.data;
   }
 
 };
