@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 from decouple import config, Csv
 from src.tracker import routes as tracker_routes
 from src.users import routes as user_routes
+from .schemas import MessageResponse
 
 app = FastAPI()
 
@@ -38,6 +39,6 @@ async def validation_exception_handler(
     return JSONResponse(status_code=400, content={"errors": errors})
 
 
-@app.get("/")
+@app.get("/", response_model=MessageResponse)
 def index() -> dict[str, str]:
     return {"message": "Welcome to the Workout Tracker API"}

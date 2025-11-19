@@ -22,3 +22,16 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def generate_token() -> str:
     """Generate a secure random token."""
     return secrets.token_urlsafe(32)
+
+
+def set_user_token_cookie(response, token: str):
+    """Set the user_token cookie with appropriate security flags."""
+    two_week_seconds = 14 * 24 * 60 * 60
+    response.set_cookie(
+        key="user_token",
+        value=f"Bearer {token}",
+        httponly=True,  # Prevents JS access (XSS protection)
+        secure=True,  # Only send over HTTPS
+        samesite="lax",  # Helps prevent CSRF
+        max_age=two_week_seconds
+    )
