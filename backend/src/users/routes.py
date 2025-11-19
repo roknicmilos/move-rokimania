@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.exceptions import RequestValidationError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database import get_async_db
@@ -6,6 +7,7 @@ from . import models, schemas
 from .service import authenticate_user, register_user
 from .exceptions import InvalidCredentialsError, UsernameAlreadyExistsError
 from .dependencies import get_current_user
+from ..exceptions import FieldValidationError
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -22,10 +24,7 @@ async def register(
     try:
         user = await register_user(user_data, db)
     except UsernameAlreadyExistsError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=str(exc),
-        ) from exc
+        raise FieldValidationError(field="username", message=str(exc)) from exc
 
     return schemas.UserWithToken(
         id=user.id,
