@@ -74,7 +74,7 @@ export default function AddEntryPage() {
     <>
       <Toaster/>
 
-      <div className="min-h-screen bg-gray-50 py-12 px-4">
+      <main className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">
             Add New Exercise Entry
@@ -146,7 +146,7 @@ export default function AddEntryPage() {
             </div>
           )}
         </div>
-      </div>
+      </main>
     </>
   );
 }

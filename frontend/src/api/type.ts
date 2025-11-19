@@ -1,3 +1,7 @@
+export type ApiBadRequestResponse = {
+  errors: Record<string, string[]>;
+};
+
 export type BaseEntry = {
   id: number;
   created_at: string;

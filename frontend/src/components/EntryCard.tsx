@@ -1,5 +1,5 @@
-import { formatTime, getDurationSec } from "@/utils";
-import { Entry, HoldEntry, RepsEntry } from "@/type";
+import { formatTime, getDurationSec } from "@/core/utils";
+import { Entry, HoldEntry, RepsEntry } from "@/api/type";
 import { Trash2 } from "lucide-react";
 
 type EntryCardProps = {

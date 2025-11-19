@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Entry } from "@/type";
+import { Entry } from "@/api/type";
 import EntryCard from "@/components/EntryCard";
 import { moveAPI } from "@/api/moveAPI";
 

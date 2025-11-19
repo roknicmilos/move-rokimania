@@ -1,14 +1,14 @@
 import AuthForm from "@/components/AuthForm";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   return (
-    <main className="container mx-auto px-4 py-8 md:py-12">
+    <main className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-md mx-auto">
         <h1 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-          Create Account
+          Sign In
         </h1>
         <div className="bg-white rounded-xl shadow-md p-6">
-          <AuthForm mode="register" redirectOnSuccess="/"/>
+          <AuthForm mode="login" redirectOnSuccess="/"/>
         </div>
       </div>
     </main>

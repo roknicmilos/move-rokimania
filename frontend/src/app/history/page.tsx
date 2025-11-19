@@ -1,5 +1,5 @@
-import { formatDate } from "@/utils";
-import { Entry } from "@/type";
+import { formatDate } from "@/core/utils";
+import { Entry } from "@/api/type";
 import EntryTable from "@/components/EntryTable";
 import { moveAPI } from "@/api/moveAPI";
 
@@ -19,7 +19,7 @@ export default async function History() {
   });
 
   return (
-    <main className="min-h-screen bg-gray-50 py-8 px-4">
+    <main className="container mx-auto px-4 py-8 md:py-12">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-900 mb-8">Exercise Log</h1>
 
