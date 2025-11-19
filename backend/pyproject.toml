@@ -12,8 +12,7 @@ dependencies = [
     "asyncpg>=0.29.0",
     "psycopg2-binary>=2.9.9",
     "python-decouple>=3.8",
-    "passlib[bcrypt]>=1.7.4",
-    "bcrypt>=4.0.1",
+    "pwdlib[argon2]"
 ]
 
 [project.dependency-groups]
