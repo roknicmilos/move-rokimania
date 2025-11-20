@@ -1,9 +1,13 @@
 import { Entry } from "@/api/type";
-import { baseAPI } from "@/api/baseAPI";
+import { baseAPI, createAPI } from "@/api/baseAPI";
 
 export const entryAPI = {
 
-  async getEntries(): Promise<Entry[]> {
+  /**
+   * Meant to be used in server components only
+   */
+  async getEntries(userToken?: string): Promise<Entry[]> {
+    const baseAPI = createAPI(userToken)
     const res = await baseAPI.get('/entries/');
     return res.data as Entry[];
   },

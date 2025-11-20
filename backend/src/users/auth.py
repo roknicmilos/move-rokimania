@@ -1,4 +1,5 @@
 import secrets
+from decouple import config
 from pwdlib import PasswordHash
 
 password_hash = PasswordHash.recommended()
@@ -27,11 +28,12 @@ def generate_token() -> str:
 def set_user_token_cookie(response, token: str):
     """Set the user_token cookie with appropriate security flags."""
     two_week_seconds = 14 * 24 * 60 * 60
+    secure = config("COOKIE_SECURE", default=True, cast=bool)
     response.set_cookie(
         key="user_token",
         value=f"Bearer {token}",
         httponly=True,  # Prevents JS access (XSS protection)
-        secure=True,  # Only send over HTTPS
-        samesite="lax",  # Helps prevent CSRF
-        max_age=two_week_seconds
+        secure=secure,
+        samesite="none" if secure else "lax",
+        max_age=two_week_seconds,
     )

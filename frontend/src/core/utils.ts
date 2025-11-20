@@ -1,15 +1,15 @@
 export function formatDate(isoString: string) {
-  return new Date(isoString).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+  return new Date(isoString).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 }
 
 export function formatTime(isoString: string) {
-  return new Date(isoString).toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
+  return new Date(isoString).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
   });
 }
 

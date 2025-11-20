@@ -1,10 +1,12 @@
 import { formatDate } from "@/core/utils";
 import { Entry } from "@/api/type";
 import EntryTable from "@/components/EntryTable";
-import { moveAPI } from "@/api/moveAPI";
+import { entryAPI } from "@/api/entriesAPI";
+import { getUserToken } from "@/core/serverUtils";
 
 export default async function History() {
-  const entries = await moveAPI.getEntries();
+  const userToken = await getUserToken();
+  const entries = await entryAPI.getEntries(userToken);
 
   // Group entries by date (using created_at)
   const grouped = entries.reduce((acc: Record<string, Entry[]>, entry: Entry) => {
