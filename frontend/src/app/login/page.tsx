@@ -1,6 +1,9 @@
 import AuthForm from "@/components/AuthForm";
+import { redirectIfAuthenticated } from "@/core/serverUtils";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  await redirectIfAuthenticated();
+
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-md mx-auto">

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { moveAPI } from "@/api/moveAPI";
 import { LoginApiValidationError, RegisterApiValidationError } from "@/core/errors";
 import { toast, Toaster } from "react-hot-toast";
@@ -24,7 +23,6 @@ type AuthFormProps = {
 };
 
 export default function AuthForm({mode, redirectOnSuccess}: AuthFormProps) {
-  const router = useRouter();
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ errors, setErrors ] = useState<FormErrors>({});
@@ -85,7 +83,7 @@ export default function AuthForm({mode, redirectOnSuccess}: AuthFormProps) {
     }
 
     // On success, redirect to the specified page
-    router.push(redirectOnSuccess);
+    window.location.href = redirectOnSuccess;
   };
 
   return (

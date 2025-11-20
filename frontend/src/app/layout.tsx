@@ -1,16 +1,17 @@
-import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { UserProvider } from "@/context/UserContext";
 import "./globals.css";
-import {Navigation} from "@/components/Navigation";
+import { Navigation } from "@/components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: [ "latin" ],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: [ "latin" ],
 });
 
 export const metadata: Metadata = {
@@ -28,8 +29,10 @@ export default function RootLayout({children}: RootLayoutProps) {
     <body
       className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50`}
     >
-    <Navigation/>
-    {children}
+    <UserProvider>
+      <Navigation/>
+      <main className="container mx-auto p-4">{children}</main>
+    </UserProvider>
     </body>
     </html>
   );

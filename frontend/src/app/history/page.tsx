@@ -1,12 +1,14 @@
+import { redirect } from "next/navigation";
 import { formatDate } from "@/core/utils";
 import { Entry } from "@/api/type";
 import EntryTable from "@/components/EntryTable";
-import { entryAPI } from "@/api/entriesAPI";
-import { getUserToken } from "@/core/serverUtils";
+import { getValidUserTokenOrRedirect } from "@/core/serverUtils";
+import { moveAPI } from "@/api/moveAPI";
+
 
 export default async function History() {
-  const userToken = await getUserToken();
-  const entries = await entryAPI.getEntries(userToken);
+  const userToken = await getValidUserTokenOrRedirect();
+  const entries = await moveAPI.getEntries(userToken);
 
   // Group entries by date (using created_at)
   const grouped = entries.reduce((acc: Record<string, Entry[]>, entry: Entry) => {

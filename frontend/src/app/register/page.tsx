@@ -1,6 +1,9 @@
 import AuthForm from "@/components/AuthForm";
+import { redirectIfAuthenticated } from "@/core/serverUtils";
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  await redirectIfAuthenticated();
+
   return (
     <main className="container mx-auto px-4 py-8 md:py-12">
       <div className="max-w-md mx-auto">

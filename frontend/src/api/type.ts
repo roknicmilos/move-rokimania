@@ -10,9 +10,8 @@ export type BaseModel = {
 };
 
 // Unified type for both login and register responses
-export type AuthResponse = BaseModel & {
+export type User = BaseModel & {
   username: string;
-  token: string;
 };
 
 export type BaseEntry = BaseModel & {
