@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { UserProvider } from "@/context/UserContext";
 import "./globals.css";
@@ -15,8 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Move@Rokimania",
-  description: "Track your fitness activities with Move@Rokimania",
+  title: "Move",
+  description: "Track your fitness activities with Move",
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 };
 
 type RootLayoutProps = Readonly<{

@@ -1,4 +1,4 @@
-# Move@Rokimania
+# Move
 
 FastAPI + Next.js app for tracking fitness stuff.
 

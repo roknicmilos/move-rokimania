@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logoImage from "@/public/logo.png";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -89,10 +91,15 @@ export function Navigation() {
         "sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur" +
         " supports-[backdrop-filter]:bg-white/80"
       }>
-      <div className="container flex h-16 items-center justify-between px-4 md:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 font-bold text-xl">
-          <span className="hidden sm:inline-block">Move@Rokimania</span>
+      <div className="flex h-16 items-center justify-between px-4 md:px-8">
+        <Link href="/">
+          <Image
+            src={logoImage}
+            alt="Move logo"
+            width={40}
+            height={40}
+            className="h-10 w-10"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -147,7 +154,7 @@ export function Navigation() {
           <SheetContent side="left" className="w-80 pt-12">
             <SheetHeader>
               <SheetTitle className="text-left text-2xl font-bold flex items-center gap-3">
-                Move@Rokimania
+                Move
               </SheetTitle>
             </SheetHeader>
             <nav className="mt-8 flex flex-col gap-2">
