@@ -5,13 +5,21 @@ from starlette.responses import Response
 from src.database import get_async_db
 from src.schemas import MessageResponse
 from . import models, schemas
-from .auth import set_user_token_cookie
+from .auth import set_user_token_cookie, unset_user_token_cookie
 from .service import authenticate_user, register_user
 from .exceptions import InvalidCredentialsError, UsernameAlreadyExistsError
 from .dependencies import get_user_from_token
 from ..exceptions import FieldValidationError
 
 router = APIRouter(prefix="/users", tags=["users"])
+
+
+@router.post("/logout", response_model=MessageResponse)
+async def logout(response: Response):
+    """Log out the user by clearing the session cookie."""
+    unset_user_token_cookie(response)
+    return {"message": "User logged out successfully."}
+
 
 
 @router.post(

@@ -37,3 +37,8 @@ def set_user_token_cookie(response, token: str):
         samesite="none" if secure else "lax",
         max_age=two_week_seconds,
     )
+
+
+def unset_user_token_cookie(response):
+    """Unset the user_token cookie."""
+    response.delete_cookie(key="user_token")
