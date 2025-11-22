@@ -18,17 +18,15 @@ async function getUserToken(): Promise<string | undefined> {
 /**
  * Gets a valid user token or redirects to login page if not authenticated.
  */
-export async function getValidUserTokenOrRedirect(): Promise<string> {
+export async function getValidUserTokenOrRedirect(): Promise<string | void> {
   const userToken = await getUserToken();
   if (!userToken) {
     redirect("/login");
-    return;
   }
 
   const user = await moveAPI.getMe(userToken);
   if (!user) {
     redirect("/login");
-    return;
   }
 
   return userToken;
