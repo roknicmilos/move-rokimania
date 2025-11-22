@@ -1,8 +1,11 @@
 import secrets
-from decouple import config
 from pwdlib import PasswordHash
 
+from src.settings import get_settings
+
 password_hash = PasswordHash.recommended()
+
+settings = get_settings()
 
 
 def hash_password(password: str) -> str:
@@ -32,8 +35,8 @@ def set_user_token_cookie(response, token: str):
         key="user_token",
         value=f"Bearer {token}",
         httponly=True,  # Prevents JS access (XSS protection)
-        secure=config("COOKIE_SECURE", default=True, cast=bool),
-        samesite=config("COOKIE_SAMESITE", default="none", cast=bool),
+        secure=settings.COOKIE_SECURE,
+        samesite=settings.COOKIE_SAMESITE,
         max_age=two_week_seconds,
     )
 

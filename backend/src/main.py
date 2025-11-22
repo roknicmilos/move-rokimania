@@ -3,16 +3,18 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from decouple import config, Csv
 from src.tracker import routes as tracker_routes
 from src.users import routes as user_routes
 from .schemas import MessageResponse
+from .settings import get_settings
 
 app = FastAPI()
 
+settings = get_settings()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=config("CORS_ALLOWED_ORIGINS", cast=Csv()),
+    allow_origins=settings.CORS_ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

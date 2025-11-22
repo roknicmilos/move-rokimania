@@ -1,4 +1,3 @@
-import os
 from collections.abc import AsyncGenerator, Generator
 
 from sqlalchemy import create_engine
@@ -9,16 +8,12 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.orm import sessionmaker
 
-from decouple import config
+from src.settings import get_settings
 
-SQLALCHEMY_DATABASE_URL = config(
-    "SQLALCHEMY_DATABASE_URL",
-    default=None
-)
-ASYNC_SQLALCHEMY_DATABASE_URL = config(
-    "ASYNC_SQLALCHEMY_DATABASE_URL",
-    default=None
-)
+settings = get_settings()
+
+SQLALCHEMY_DATABASE_URL = settings.SQLALCHEMY_DATABASE_URL
+ASYNC_SQLALCHEMY_DATABASE_URL = settings.ASYNC_SQLALCHEMY_DATABASE_URL
 
 # Sync engine (for existing code and migrations)
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
