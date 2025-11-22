@@ -28,13 +28,12 @@ def generate_token() -> str:
 def set_user_token_cookie(response, token: str):
     """Set the user_token cookie with appropriate security flags."""
     two_week_seconds = 14 * 24 * 60 * 60
-    secure = config("COOKIE_SECURE", default=True, cast=bool)
     response.set_cookie(
         key="user_token",
         value=f"Bearer {token}",
         httponly=True,  # Prevents JS access (XSS protection)
-        secure=secure,
-        samesite="none" if secure else "lax",
+        secure=config("COOKIE_SECURE", default=True, cast=bool),
+        samesite=config("COOKIE_SAMESITE", default="none", cast=bool),
         max_age=two_week_seconds,
     )
 
