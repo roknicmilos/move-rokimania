@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     CORS_ALLOWED_ORIGINS: list[str] = []
     COOKIE_SECURE: str = False
     COOKIE_SAMESITE: str = "lax"
+    COOKIE_DOMAIN: str = localhost
 
     model_config = SettingsConfigDict(env_file=None)
 

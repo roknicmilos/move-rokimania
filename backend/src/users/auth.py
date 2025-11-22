@@ -38,6 +38,7 @@ def set_user_token_cookie(response, token: str):
         secure=settings.COOKIE_SECURE,
         samesite=settings.COOKIE_SAMESITE,
         max_age=two_week_seconds,
+	domain=settings.COOKIE_DOMAIN
     )
 
 
